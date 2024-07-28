@@ -1,4 +1,5 @@
 # IP = $(hostname -I | cut -d ' ' -f 1)
+# change hostname accordingly
 curl --location 'http://localhost:8083/connectors' \
    --header 'Accept: application/json' \
    --header 'Content-Type: application/json' \
