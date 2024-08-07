@@ -10,6 +10,7 @@ networks:
 
 services:
    cdc-using-debezium-postgres:
+       platform: linux/amd64
        image: debezium/postgres:14
        container_name: cdc-using-debezium-postgres
        hostname: cdc-using-debezium-postgres
@@ -27,6 +28,7 @@ services:
 
 
    cdc-using-debezium-kafka:
+       platform: linux/amd64
        image: bitnami/kafka:3.4.1
        container_name: cdc-using-debezium-kafka
        hostname: cdc-using-debezium-kafka
@@ -48,7 +50,11 @@ services:
 
 
    cdc-using-debezium-connect:
-       image: debezium/connect:2.7
+    #    image: debezium/connect:2.7
+       platform: linux/amd64
+       build:
+           context: iceberg-kafka-connect
+           dockerfile: Dockerfile
        container_name: cdc-using-debezium-connect
        hostname: cdc-using-debezium-connect
        restart: always
@@ -60,7 +66,7 @@ services:
            CONFIG_STORAGE_TOPIC: my_connect_configs
            OFFSET_STORAGE_TOPIC: my_connect_offsets
            STATUS_STORAGE_TOPIC: my_connect_statuses
-           ENABLE_DEBEZIUM_SCRIPTING: 'true'
+        #    ENABLE_DEBEZIUM_SCRIPTING: 'true'
        links:
            - cdc-using-debezium-kafka
            - cdc-using-debezium-postgres
