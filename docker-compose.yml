@@ -1,6 +1,3 @@
-version: '3.7'
-
-
 networks:
    cdc-using-debezium-network:
        name: cdc-using-debezium-network
@@ -11,7 +8,7 @@ networks:
 services:
    cdc-using-debezium-postgres:
        platform: linux/amd64
-       image: debezium/postgres:14
+       image: debezium/postgres:16
        container_name: cdc-using-debezium-postgres
        hostname: cdc-using-debezium-postgres
        restart: always
@@ -39,8 +36,8 @@ services:
            KAFKA_CFG_NODE_ID: 1
            KAFKA_KRAFT_CLUSTER_ID: q0k00yjQRaqWmAAAZv955w # base64 UUID
            KAFKA_CFG_PROCESS_ROLES: controller,broker
-           KAFKA_CFG_LISTENERS: INTERNAL://cdc-using-debezium-kafka:29092,CONTROLLER://cdc-using-debezium-kafka:29093,EXTERNAL://0.0.0.0:9092
-           KAFKA_CFG_ADVERTISED_LISTENERS: INTERNAL://cdc-using-debezium-kafka:29092,EXTERNAL://localhost:9092
+           KAFKA_CFG_LISTENERS: INTERNAL://:29092,CONTROLLER://:29093,EXTERNAL://0.0.0.0:9092
+           KAFKA_CFG_ADVERTISED_LISTENERS: INTERNAL://:29092,EXTERNAL://localhost:9092
            KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
            KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@cdc-using-debezium-kafka:29093
            KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -50,11 +47,11 @@ services:
 
 
    cdc-using-debezium-connect:
-    #    image: debezium/connect:2.7
+       image: debezium/connect:2.7
        platform: linux/amd64
-       build:
-           context: iceberg-kafka-connect
-           dockerfile: Dockerfile
+    #    build:
+    #        context: iceberg-kafka-connect
+    #        dockerfile: Dockerfile
        container_name: cdc-using-debezium-connect
        hostname: cdc-using-debezium-connect
        restart: always
@@ -66,7 +63,7 @@ services:
            CONFIG_STORAGE_TOPIC: my_connect_configs
            OFFSET_STORAGE_TOPIC: my_connect_offsets
            STATUS_STORAGE_TOPIC: my_connect_statuses
-        #    ENABLE_DEBEZIUM_SCRIPTING: 'true'
+           ENABLE_DEBEZIUM_SCRIPTING: 'true'
        links:
            - cdc-using-debezium-kafka
            - cdc-using-debezium-postgres
