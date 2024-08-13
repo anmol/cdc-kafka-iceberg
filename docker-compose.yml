@@ -47,11 +47,9 @@ services:
 
 
    cdc-using-debezium-connect:
-       image: debezium-iceberg-jdbc:latest
-       
-    #    build:
-    #        context: iceberg-kafka-connect
-    #        dockerfile: Dockerfile
+       build: 
+           context: .
+           dockerfile: debezium-connect.Dockerfile
        container_name: cdc-using-debezium-connect
        hostname: cdc-using-debezium-connect
        restart: always
@@ -72,17 +70,6 @@ services:
            - cdc-using-debezium-network
        volumes:
            - "$PWD/data/kafka/out:/out-kafka"
-
-#    test-httpd:
-#         image: httpd:2.4
-#         container_name: test-httpd
-#         hostname: test-httpd
-#         restart: always
-#         ports:
-#            - '8080:80'
-#         networks:
-#            - cdc-using-debezium-network
-
 
 volumes:
    cdc-using-debezium-postgres-data:
