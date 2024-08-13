@@ -51,3 +51,6 @@ WHERE email = 'anmol+3@apg.com';
 INSERT INTO "User" (email, name)
 VALUES ('anmol+4@apg.com', 'name_4');
 
+INSERT INTO "User" (email, name)
+VALUES ('anmol+5@apg.com', 'name_5');
+

@@ -49,7 +49,7 @@ services:
    cdc-using-debezium-connect:
        build: 
            context: .
-           dockerfile: debezium-connect.Dockerfile
+           dockerfile: ./debezium-iceberg/Dockerfile
        container_name: cdc-using-debezium-connect
        hostname: cdc-using-debezium-connect
        restart: always
