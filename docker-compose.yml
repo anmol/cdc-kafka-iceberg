@@ -17,7 +17,7 @@ services:
        environment:
            POSTGRES_PASSWORD: 123
            POSTGRES_USER: postgres
-           POSTGRES_DB: cdc-using-debezium
+           POSTGRES_DB: cdc
        volumes:
            - 'cdc-using-debezium-postgres-data:/var/lib/postgresql/data'
        networks:
@@ -42,6 +42,7 @@ services:
            KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@cdc-using-debezium-kafka:29093
            KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
            KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+           KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE: true
        networks:
            - cdc-using-debezium-network
 
@@ -62,6 +63,7 @@ services:
            OFFSET_STORAGE_TOPIC: my_connect_offsets
            STATUS_STORAGE_TOPIC: my_connect_statuses
            CONNECT_PLUGIN_PATH: /kafka/connect
+        #    LOG_LEVEL: DEBUG
         #    ENABLE_DEBEZIUM_SCRIPTING: 'true'
        links:
            - cdc-using-debezium-kafka
@@ -70,6 +72,7 @@ services:
            - cdc-using-debezium-network
        volumes:
            - "$PWD/data/kafka/out:/out-kafka"
+           - "$PWD/logs:/kafka/logs"
 
 volumes:
    cdc-using-debezium-postgres-data:

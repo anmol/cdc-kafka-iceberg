@@ -10,14 +10,19 @@ curl --location 'http://localhost:8083/connectors' \
    "name": "cdc-using-debezium-connector",
    "config": {
        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
-       "database.hostname": "192.168.1.2",
+       "database.hostname": "192.168.1.7",
        "database.port": "5443",
        "database.user": "postgres",
        "database.password": "123",
-       "database.dbname": "cdc-using-debezium",
+       "database.dbname": "cdc",
        "database.server.id": "184054",
-       "table.include.list": "public.User",
-       "topic.prefix": "cdc-using-debezium-topic",
+       "table.include.list": "public.User,public.employee",
+       "topic.creation.default.partitions": "1",
+       "topic.creation.default.replication.factor": "1",
+       "slot.name": "kafka_poc",
+       "slot.max.retries": "2",
+       "tasks.max":"1",
+       "topic.prefix": "cdc",
        "plugin.name": "pgoutput"
    }
 }'
