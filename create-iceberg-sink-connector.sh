@@ -25,10 +25,8 @@ curl --location 'http://localhost:8083/connectors' \
         "iceberg.tables.evolve-schema-enabled": "true",
         "iceberg.tables.auto-create-enabled": "true",
         "iceberg.tables.schema-case-insensitive": "true",
-        "iceberg.control.commit.interval-ms": "5000",
-        "iceberg.control.commit.timeout-ms": "600000",
-        "consumer.override.auto.offset.reset": "earliest",
-        "iceberg.kafka.auto.offset.reset": "earliest",
+        "iceberg.control.commit.interval-ms": "10000",
+        "iceberg.control.commit.timeout-ms": "60000",
         "iceberg.kafka.heartbeat.interval.ms": "30000",
         "iceberg.kafka.session.timeout.ms": "90000",
 

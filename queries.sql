@@ -73,5 +73,12 @@ insert into employee(name) values('anmol');
 insert into employee(name) values('anmol+1');
 
 insert into employee(name) values('anmol+2');
+
+insert into employee(name) values('anmol+3');
+
+insert into employee(name) values('anmol+4');
+
+insert into employee(name) values('anmol+5');
+
 select * from employee;
 
