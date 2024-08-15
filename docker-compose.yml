@@ -100,8 +100,8 @@ services:
        networks:
             - cdc-using-debezium-network
        volumes:
-            - "$PWD/data/spark:/bitnami/spark"
-            - "$PWD/logs/spark/logs:/bitnami/spark/logs"
+            - "$PWD/spark/conf:/opt/bitnami/spark/conf"
+            - "$PWD/logs/spark/logs:/opt/bitnami/spark/logs"
             - "$PWD/data/kafka/out:/out-kafka"
 
 volumes:
