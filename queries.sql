@@ -3,7 +3,7 @@ select * from pg_replication_slots;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-DROP TABLE "User";
+DROP TABLE IF EXISTS "User";
 
 CREATE TABLE "User"
             (
