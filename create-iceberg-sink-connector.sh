@@ -7,7 +7,7 @@ curl --location 'http://localhost:8083/connectors' \
    "name": "kafka-connect-iceberg",
    "config": {
         "connector.class": "io.tabular.iceberg.connect.IcebergSinkConnector",
-        "tasks.max": "1",
+        "tasks.max": "2",
         "errors.log.enable": "true",
         "topics.regex": "cdc.*",
         
@@ -31,6 +31,7 @@ curl --location 'http://localhost:8083/connectors' \
         "iceberg.kafka.session.timeout.ms": "90000",
 
         "iceberg.table.cdc.public_user.id-columns": "id",
-        "iceberg.table.cdc.public_employee.id-columns": "id"
+        "iceberg.table.cdc.public_employee.id-columns": "id",
+        "iceberg.table.cdc.public_employee_2.id-columns": "id"
    }
 }'

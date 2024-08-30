@@ -19,3 +19,5 @@ curl -sO https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/3.3.6/hado
 
 # Copy the connector plugin into the Kafka Connect image
 COPY debezium-iceberg/target/tabular-iceberg-kafka-connect-${ICEBERG_CONNECTOR_VERSION}/lib $KAFKA_CONNECT_IS_DIR/
+# for direct creating of image - TODO - Check fix
+#COPY target/tabular-iceberg-kafka-connect-${ICEBERG_CONNECTOR_VERSION}/lib $KAFKA_CONNECT_IS_DIR/
