@@ -1,6 +1,6 @@
 # IP = $(hostname -I | cut -d ' ' -f 1)
 # change hostname accordingly
-# $1 = bucket name (ecidtpl-test-3d6e38d3cf5dc557)
+# $1 = bucket name (without s3://)
 # $2 = access key id
 # $3 = secret access key
 # $4 = session token
