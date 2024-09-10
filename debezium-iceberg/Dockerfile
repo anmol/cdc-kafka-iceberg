@@ -1,5 +1,12 @@
-ARG DEBEZIUM_VERSION=2.7
-FROM quay.io/debezium/connect-base:${DEBEZIUM_VERSION}
+# syntax=docker/dockerfile:1
+FROM alpine:3.19 AS unzipper
+RUN apk add unzip wget curl
+RUN mkdir /opt/ ; \
+  curl -Lo iceberg.zip \
+  https://github.com/tabular-io/iceberg-kafka-connect/releases/download/v0.6.19/iceberg-kafka-connect-runtime-0.6.19.zip && \
+  unzip -j iceberg.zip "*/lib*" -d /opt/lib
+
+FROM quay.io/debezium/connect-base:2.7
 # FROM debezium/connect:${DEBEZIUM_VERSION}
 
 ENV DEBEZIUM_VERSION="2.7.1.Final" \
@@ -18,6 +25,6 @@ curl -sO https://repo1.maven.org/maven2/org/apache/commons/commons-configuration
 curl -sO https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-auth/3.3.6/hadoop-auth-3.3.6.jar
 
 # Copy the connector plugin into the Kafka Connect image
-COPY debezium-iceberg/target/tabular-iceberg-kafka-connect-${ICEBERG_CONNECTOR_VERSION}/lib $KAFKA_CONNECT_IS_DIR/
+COPY --from=unzipper /opt/lib $KAFKA_CONNECT_IS_DIR/
 # for direct creating of image - TODO - Check fix
 #COPY target/tabular-iceberg-kafka-connect-${ICEBERG_CONNECTOR_VERSION}/lib $KAFKA_CONNECT_IS_DIR/
