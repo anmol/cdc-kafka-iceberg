@@ -1,5 +1,9 @@
 # IP = $(hostname -I | cut -d ' ' -f 1)
 # change hostname accordingly
+# $1 = bucket name (ecidtpl-test-3d6e38d3cf5dc557)
+# $2 = access key id
+# $3 = secret access key
+# $4 = session token
 curl --location 'http://localhost:8083/connectors' \
    --header 'Accept: application/json' \
    --header 'Content-Type: application/json' \
@@ -15,8 +19,14 @@ curl --location 'http://localhost:8083/connectors' \
         "transforms.debezium.type": "io.tabular.iceberg.connect.transforms.DebeziumTransform",
         "transforms.debezium.cdc.target.pattern": "cdc.{db}_{table}",
 
-        "iceberg.catalog.type": "hadoop",
-        "iceberg.catalog.warehouse": "/out-kafka/iceberg/warehouse",
+        "iceberg.catalog.warehouse": "s3://'"$1"'/anmol/kafka/out/apg_test",
+
+        "iceberg.catalog.catalog-impl": "org.apache.iceberg.aws.glue.GlueCatalog",
+        "iceberg.catalog.io-impl": "org.apache.iceberg.aws.s3.S3FileIO",
+        "iceberg.catalog.s3.access-key-id": "'"$2"'",
+        "iceberg.catalog.s3.secret-access-key": "'"$3"'",
+        "iceberg.catalog.s3.session-token": "'"$4"'",
+        "iceberg.catalog.client.region": "ap-southeast-1",
 
         "iceberg.tables.cdc-field": "_cdc.op",
         "iceberg.tables.route-field": "_cdc.target",
@@ -32,6 +42,7 @@ curl --location 'http://localhost:8083/connectors' \
 
         "iceberg.table.cdc.public_user.id-columns": "id",
         "iceberg.table.cdc.public_employee.id-columns": "id",
-        "iceberg.table.cdc.public_employee_2.id-columns": "id"
+        "iceberg.table.cdc.public_employee_2.id-columns": "id",
+        "iceberg.table.cdc.public_employee_3.id-columns": "id"
    }
 }'

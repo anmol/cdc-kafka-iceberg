@@ -64,6 +64,10 @@ services:
            STATUS_STORAGE_TOPIC: my_connect_statuses
            CONNECT_PLUGIN_PATH: /kafka/connect
            HEAP_OPTS: '-Xmx2G -Xms2G'
+           AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+           AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+           AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+
         #    LOG_LEVEL: DEBUG
         #    ENABLE_DEBEZIUM_SCRIPTING: 'true'
        links:

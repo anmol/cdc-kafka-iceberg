@@ -16,7 +16,7 @@ curl --location 'http://localhost:8083/connectors' \
        "database.password": "123",
        "database.dbname": "cdc",
        "database.server.id": "184054",
-       "table.include.list": "public.User,public.employee,public.employee_2",
+       "table.include.list": "public.User,public.employee,public.employee_2,public.employee_3",
        "topic.creation.default.partitions": "1",
        "topic.creation.default.replication.factor": "1",
        "slot.name": "kafka_poc",
