@@ -1,5 +1,5 @@
 # CDC using Kafka
-This is a setup to run an end-to-end CDC pipeline from a postgres source Database to iceberg S3 sink.
+This is a setup to run an end-to-end CDC(Change Data Capture) pipeline from a postgres source Database to iceberg S3 sink.
 
 ## How to launch
 ```
