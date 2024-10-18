@@ -66,4 +66,12 @@ Debezium Connector pushes a table's Primary Key(PK) or Unique Key(could be compo
 
 However, Debezium still gives a way to manually add keys to the connector configurations should the table has missing constraints which otherwise is there semantically. Ideally the tables' constraints should be updated to avoid any unexpected behaviour.
 
+### Reset the env
+- Delete tables in Glue Database. Glue database is created based on the sink config: `"transforms.debezium.cdc.target.pattern": "cdc_apg.{db}_{table}"` . In this case it will be `cdc_apg`
+- Delete data in S3 location
+- Delete sink connectors - `curl -X DELETE http://localhost:8083/connectors/kafka-connect-iceberg` `curl -X DELETE http://localhost:8083/connectors/cdc-using-debezium-connector`
+- Compose Down
+- If we want compose to rebuild image we need to delete from local - for example to delete the connector image if we want to rebuild - `docker rmi kafka-poc-cdc-using-debezium-connect`
+ 
+
 
