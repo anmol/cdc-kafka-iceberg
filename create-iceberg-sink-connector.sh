@@ -17,7 +17,7 @@ curl --location 'http://localhost:8083/connectors' \
         
         "transforms": "debezium",
         "transforms.debezium.type": "io.tabular.iceberg.connect.transforms.DebeziumTransform",
-        "transforms.debezium.cdc.target.pattern": "cdc.{db}_{table}",
+        "transforms.debezium.cdc.target.pattern": "cdc_apg.{db}_{table}",
 
         "iceberg.catalog.warehouse": "s3://'"$1"'/anmol/kafka/out/apg_test",
 
@@ -40,9 +40,7 @@ curl --location 'http://localhost:8083/connectors' \
         "iceberg.kafka.heartbeat.interval.ms": "30000",
         "iceberg.kafka.session.timeout.ms": "90000",
 
-        "iceberg.table.cdc.public_user.id-columns": "id",
-        "iceberg.table.cdc.public_employee.id-columns": "id",
-        "iceberg.table.cdc.public_employee_2.id-columns": "id",
-        "iceberg.table.cdc.public_employee_3.id-columns": "id"
+        "iceberg.table.cdc_apg.public_user.id-columns": "id",
+        "iceberg.table.cdc_apg.public_employee.id-columns": "id"
    }
 }'

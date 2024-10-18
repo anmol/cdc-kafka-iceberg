@@ -1,10 +1,12 @@
 # syntax=docker/dockerfile:1
 FROM alpine:3.19 AS unzipper
 RUN apk add unzip wget curl
+COPY ./debezium-iceberg/target target
 RUN mkdir /opt/ ; \
-  curl -Lo iceberg.zip \
-  https://github.com/tabular-io/iceberg-kafka-connect/releases/download/v0.6.19/iceberg-kafka-connect-runtime-0.6.19.zip && \
-  unzip -j iceberg.zip "*/lib*" -d /opt/lib
+#  curl -Lo iceberg.zip \
+#  https://github.com/tabular-io/iceberg-kafka-connect/releases/download/v0.6.19/iceberg-kafka-connect-runtime-0.6.19.zip && \
+#  unzip -j iceberg.zip "*/lib*" -d /opt/lib
+   unzip -j target/iceberg-kafka-connect-runtime-0.6.15 "*/lib*" -d /opt/lib
 
 FROM quay.io/debezium/connect-base:2.7
 # FROM debezium/connect:${DEBEZIUM_VERSION}
