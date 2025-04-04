@@ -30,6 +30,8 @@ UPDATE "User"
 SET name = 'name_20'
 WHERE email = 'anmol+2@apg.com';
 
+
+
 UPDATE "User"
 SET name = 'name_21'
 WHERE email = 'anmol+2@apg.com';
@@ -48,11 +50,15 @@ UPDATE "User"
 SET name = 'name_31'
 WHERE email = 'anmol+3@apg.com';
 
+BEGIN;
+
 INSERT INTO "User" (email, name)
 VALUES ('anmol+4@apg.com', 'name_4');
 
 INSERT INTO "User" (email, name)
 VALUES ('anmol+5@apg.com', 'name_5');
+
+
 
 INSERT INTO "User" (email, name)
 VALUES ('anmol+6@apg.com', 'name_6');
@@ -70,8 +76,6 @@ VALUES ('anmol+10@apg.com', 'name_10');
 
 INSERT INTO "User" (email, name)
 VALUES ('anmol+11@apg.com', 'name_11');
-
-select * from "User";
 
 DELETE
 FROM "User"
@@ -92,6 +96,19 @@ WHERE email = 'anmol+9@apg.com';
 DELETE
 FROM "User"
 WHERE email = 'anmol+10@apg.com';
+
+COMMIT;
+
+BEGIN;
+
+DELETE
+FROM "User"
+WHERE email = 'anmol+11@apg.com';
+
+INSERT INTO "User" (email, name)
+VALUES ('anmol+11@apg.com', 'name_11');
+
+COMMIT;
 
 
 drop table if exists employee;

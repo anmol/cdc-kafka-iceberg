@@ -79,71 +79,92 @@ services:
            - "$PWD/data/kafka/out:/out-kafka"
            - "$PWD/logs:/kafka/logs"
 
-   spark:
-       build:
-           context: .
-           dockerfile: ./spark/Dockerfile
-       container_name: spark
-       hostname: spark
-       restart: always
-       ports:
-            - '8080:8080'
-            - '7077:7077'
-       environment:
-            SPARK_MODE: master
-            SPARK_RPC_AUTHENTICATION_ENABLED: 'false'
-            SPARK_RPC_ENCRYPTION_ENABLED: 'false'
-            SPARK_LOCAL_DIRS: /tmp
-            SPARK_WORKER_MEMORY: 2G
-            SPARK_WORKER_CORES: 1
-            SPARK_WORKER_INSTANCES: 1
-            SPARK_WORKER_PORT: 8881
-            SPARK_WORKER_WEBUI_PORT: 8081
-            SPARK_MASTER_PORT: 7077
-            SPARK_MASTER_WEBUI_PORT: 8080
-            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-            AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
-            AWS_REGION: ap-southeast-1
-       networks:
-            - cdc-using-debezium-network
-       volumes:
-            - "$PWD/spark/conf:/opt/bitnami/spark/conf"
-            - "$PWD/logs/spark/logs:/opt/bitnami/spark/logs"
-            - "$PWD/data/kafka/out:/out-kafka"
+#    spark:
+#        build:
+#            context: .
+#            dockerfile: ./spark/Dockerfile
+#        container_name: spark
+#        hostname: spark
+#        restart: always
+#        ports:
+#             - '8080:8080'
+#             - '7077:7077'
+#        environment:
+#             SPARK_MODE: master
+#             SPARK_RPC_AUTHENTICATION_ENABLED: 'false'
+#             SPARK_RPC_ENCRYPTION_ENABLED: 'false'
+#             SPARK_LOCAL_DIRS: /tmp
+#             SPARK_WORKER_MEMORY: 2G
+#             SPARK_WORKER_CORES: 1
+#             SPARK_WORKER_INSTANCES: 1
+#             SPARK_WORKER_PORT: 8881
+#             SPARK_WORKER_WEBUI_PORT: 8081
+#             SPARK_MASTER_PORT: 7077
+#             SPARK_MASTER_WEBUI_PORT: 8080
+#             AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+#             AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+#             AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+#             AWS_REGION: ap-southeast-1
+#        networks:
+#             - cdc-using-debezium-network
+#        volumes:
+#             - "$PWD/spark/conf:/opt/bitnami/spark/conf"
+#             - "$PWD/logs/spark/logs:/opt/bitnami/spark/logs"
+#             - "$PWD/data/kafka/out:/out-kafka"
 
-   spark2:
-       build:
-           context: .
-           dockerfile: ./spark2/Dockerfile
-       container_name: spark2
-       hostname: spark2
-       restart: always
-       ports:
-            - '6080:8080'
-            - '6077:7077'
-       environment:
-            SPARK_MODE: master
-            SPARK_RPC_AUTHENTICATION_ENABLED: 'false'
-            SPARK_RPC_ENCRYPTION_ENABLED: 'false'
-            SPARK_LOCAL_DIRS: /tmp
-            SPARK_WORKER_MEMORY: 2G
-            SPARK_WORKER_CORES: 1
-            SPARK_WORKER_INSTANCES: 1
-            SPARK_WORKER_PORT: 8881
-            SPARK_WORKER_WEBUI_PORT: 8081
-            SPARK_MASTER_PORT: 7077
-            SPARK_MASTER_WEBUI_PORT: 8080
-            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-            AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
-            AWS_REGION: ap-southeast-1
-       networks:
-            - cdc-using-debezium-network
-       volumes:
-            - "$PWD/spark2/conf:/opt/bitnami/spark/conf"
-            - "$PWD/logs/spark/logs:/opt/bitnami/spark/logs"
-            - "$PWD/data/kafka/out:/out-kafka"
+#    spark2:
+#        build:
+#            context: .
+#            dockerfile: ./spark2/Dockerfile
+#        container_name: spark2
+#        hostname: spark2
+#        restart: always
+#        ports:
+#             - '6080:8080'
+#             - '6077:7077'
+#        environment:
+#             SPARK_MODE: master
+#             SPARK_RPC_AUTHENTICATION_ENABLED: 'false'
+#             SPARK_RPC_ENCRYPTION_ENABLED: 'false'
+#             SPARK_LOCAL_DIRS: /tmp
+#             SPARK_WORKER_MEMORY: 2G
+#             SPARK_WORKER_CORES: 1
+#             SPARK_WORKER_INSTANCES: 1
+#             SPARK_WORKER_PORT: 8881
+#             SPARK_WORKER_WEBUI_PORT: 8081
+#             SPARK_MASTER_PORT: 7077
+#             SPARK_MASTER_WEBUI_PORT: 8080
+#             AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+#             AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+#             AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+#             AWS_REGION: ap-southeast-1
+#        networks:
+#             - cdc-using-debezium-network
+#        volumes:
+#             - "$PWD/spark2/conf:/opt/bitnami/spark/conf"
+#             - "$PWD/logs/spark/logs:/opt/bitnami/spark/logs"
+#             - "$PWD/data/kafka/out:/out-kafka"
+
+#    spark-emr:
+#        build:
+#            context: .
+#            dockerfile: ./spark-emr/Dockerfile
+#        container_name: spark-emr
+#        hostname: spark-emr
+#        restart: always
+#        tty: true
+#        ports:
+#             - '5988:8088'
+#             - '5970:9870'
+#             - '17080:18080'
+#             - '5080:8080'
+#        environment:
+#             AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+#             AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+#             AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+#             AWS_REGION: ap-southeast-1
+#        networks:
+#             - cdc-using-debezium-network
 
 volumes:
    cdc-using-debezium-postgres-data:
