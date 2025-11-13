@@ -41,6 +41,9 @@ curl --location 'http://localhost:8083/connectors' \
         "iceberg.kafka.session.timeout.ms": "90000",
 
         "iceberg.table.cdc_apg.public_user.id-columns": "id",
-        "iceberg.table.cdc_apg.public_employee.id-columns": "id"
+        "iceberg.table.cdc_apg.public_employee.id-columns": "id",
+        "iceberg.table.cdc_apg.public_orders.id-columns": "id",
+        "iceberg.table.cdc_apg.public_products.id-columns": "id",
+        "iceberg.table.cdc_apg.public_countries.id-columns": "code"
    }
 }'

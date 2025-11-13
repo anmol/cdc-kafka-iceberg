@@ -48,7 +48,7 @@ VALUES ('anmol+3@apg.com', 'name_3');
 
 UPDATE "User"
 SET name = 'name_31'
-WHERE email = 'anmol+3@apg.com';
+WHERE email like 'anmol%';
 
 BEGIN;
 
