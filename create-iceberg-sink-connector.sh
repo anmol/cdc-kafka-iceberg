@@ -23,9 +23,7 @@ curl --location 'http://localhost:8083/connectors' \
 
         "iceberg.catalog.catalog-impl": "org.apache.iceberg.aws.glue.GlueCatalog",
         "iceberg.catalog.io-impl": "org.apache.iceberg.aws.s3.S3FileIO",
-        "iceberg.catalog.s3.access-key-id": "'"$2"'",
-        "iceberg.catalog.s3.secret-access-key": "'"$3"'",
-        "iceberg.catalog.s3.session-token": "'"$4"'",
+        "iceberg.catalog.s3.aws-sdk-default": "true",
         "iceberg.catalog.client.region": "ap-southeast-1",
 
         "iceberg.tables.cdc-field": "_cdc.op",
