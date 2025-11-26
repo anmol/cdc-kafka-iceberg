@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  localstack:
+    image: localstack/localstack:4.0
+    ports:
+      - "4566:4566"            # LocalStack Gateway
+      - "4510-4559:4510-4559"  # External services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      DEBUG: ${DEBUG:-0}
+      SERVICES: "kinesis,s3,dynamodb,lambda,sqs,cloudwatch"
+      AWS_DEFAULT_REGION: us-east-1
+    volumes:
+      - "${HOST_LOCALSTACK_DIR}/data:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - localstack
+
+networks:
+  localstack:
