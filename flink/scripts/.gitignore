@@ -1,0 +1,6 @@
+**/target
+data/
+**/.direnv
+*.log
+*.pyc
+__pycache__/
